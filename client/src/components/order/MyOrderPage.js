@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 function OrderPage(props) {
-  const { orderlist, currentPage ,setCurrentPage} = props
+  const { orderlist, currentPage, setCurrentPage } = props
   const totalpages = orderlist.totalPages
   const groupCount = 5
   const [startPage, setStartPage] = useState(1)
@@ -15,17 +15,18 @@ function OrderPage(props) {
     } else if (currentPage === 1) {
       setStartPage(1)
     }
-    
   }
   const display = () => {
     let pages = []
     pages.push(
       <li
         key={'previous'}
-        className={+currentPage > 1 ? 'orderBacktPage' : 'disabled orderBacktPage'}
+        className={
+          +currentPage > 1 ? 'orderBacktPage' : 'disabled orderBacktPage'
+        }
         onClick={() => {
           window.scrollTo({ top: 0, behavior: 'smooth' })
-          setCurrentPage(currentPage -1)
+          setCurrentPage(currentPage - 1)
           startPageset(currentPage - 1)
         }}
       >
@@ -45,7 +46,6 @@ function OrderPage(props) {
               if (i != currentPage) {
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }
-              
             }}
           >
             {i}
@@ -58,10 +58,10 @@ function OrderPage(props) {
           key={1}
           className={currentPage === 1 ? 'active' : ''}
           onClick={() => {
-            if(!currentPage === 1){
+            if (!currentPage === 1) {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }
-            setCurrentPage(1)  
+            setCurrentPage(1)
             startPageset(1)
           }}
         >
@@ -101,7 +101,11 @@ function OrderPage(props) {
         }
       }
       if (totalpages - startPage > groupCount) {
-        pages.push(<li key={-2} className="disabled">···</li>)
+        pages.push(
+          <li key={-2} className="disabled">
+            ···
+          </li>
+        )
       }
       pages.push(
         <li
@@ -123,12 +127,15 @@ function OrderPage(props) {
     pages.push(
       <li
         key={'next'}
-        className={currentPage === totalpages ? 'disabled orderNextPage' : 'orderNextPage'}
+        className={
+          currentPage === totalpages
+            ? 'disabled orderNextPage'
+            : 'orderNextPage'
+        }
         onClick={() => {
           window.scrollTo({ top: 0, behavior: 'smooth' })
-          setCurrentPage(currentPage +1)
+          setCurrentPage(currentPage + 1)
           startPageset(currentPage + 1)
-          
         }}
       >
         下一頁
